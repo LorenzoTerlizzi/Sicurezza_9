@@ -10,4 +10,839 @@ Fasi penetration testing:
 	- report
 Vulnerability scanner: sono diversi tool che possono supportare nell'analisi(es. nmap)
 Modello IOS/OSI: è basato su una pila di 7 livelli(layer), dove ogni layer serve il suo superioreed ha dei protocolli esclusivi.
-Le differenze tra TCI/IP e ISO/OSI: 
+Le differenze tra TCP/IP e ISO/OSI: 
+	-TCP: 4 livelli, protocollo usato in pratica, 20 byte(header), orizzontale
+	-ISO/OSI: 7 livelli, modello teorico, verticale, 5 byte(header)
+
+
+1.  Sistemi Operativi: Funzioni e Struttura
+
+    Definizione: Software che gestisce risorse hardware/software e funge da interfaccia tra utente e macchina.
+
+    Compiti principali:
+
+        Gestione memoria
+
+        Gestione processi (scheduler, stati: esecuzione, attesa, pronto, terminato)
+
+        Gestione I/O (input/output)
+
+        Interfaccia utente (grafica o testuale)
+
+        File system
+
+    Memoria:
+
+        ROM: solo lettura, contiene il BIOS
+
+        Cache: rapida, dati temporanei
+
+        Registri: velocissimi, usati dalla CPU
+
+        RAM: memoria volatile
+
+        Paging: suddivisione in pagine per evitare frammentazione
+
+        Memoria Virtuale: usa area di swap per compensare mancanza di RAM
+
+2.  File System e Sicurezza
+
+    Tipi di file system:
+
+        Windows: FAT32, ExFAT, NTFS
+
+        Linux: ext3, ext4
+
+        Apple: APFS
+
+    Gestione dispositivi I/O: tramite driver
+
+    Permessi file (Linux):
+
+        Utente (u), Gruppo (g), Altri (o)
+
+        Lettura (r), Scrittura (w), Esecuzione (x)
+
+        Comandi: chmod, chown, chgrp
+
+3.  Interfacce utente
+
+    Grafica: GUI (Windows, GNOME/KDE su Linux)
+
+    Testuale: Shell (Bash, PowerShell)
+
+4.  Sicurezza nei Sistemi Operativi
+
+    CIA Triad, si riferisce a 3 principi fondamentali:
+
+        Confidenzialità: accesso solo a utenti autorizzati
+
+        Integrità: dati non alterati
+
+        Disponibilità: accesso garantito quando necessario
+
+    Firewall:
+
+        Software o hardware
+
+        Regola traffico di rete in entrata/uscita
+
+5.  Windows OS
+
+    Architettura:
+
+        User Mode / Kernel Mode
+
+        DLL come ponte sicuro tra applicazioni e kernel
+
+    PowerShell:
+
+        Cmdlet (Get-Content, Set-Location, Invoke-WebRequest, ecc.)
+
+        Uso della pipe | per concatenare comandi
+
+6.  Linux OS
+
+    Storia: da Unix → Linux (Linus Torvalds, 1991)
+
+    Distribuzioni: es. Kali Linux (Debian-based)
+
+    Software libero: libertà di uso, studio, modifica e distribuzione
+
+➤ Struttura del filesystem:
+
+    / root
+
+    /bin comandi essenziali
+
+    /home directory utenti
+
+    /etc configurazioni
+
+    /var log
+
+    /tmp temporanei
+
+➤ Comandi base shell:
+
+    mkdir, rmdir, cp, mv, ls, cd, rm
+
+    chmod, chown, chgrp
+
+    sudo: esecuzione comandi come amministratore
+
+7.  Gestione Pacchetti (Kali Linux)
+
+    dpkg: per pacchetti .deb
+
+    apt: risolve dipendenze, usa repository (/etc/apt/sources.list)
+
+        apt install, apt remove
+
+8.  Networking e Servizi su Linux
+
+    Comandi:
+
+        ifconfig / ip a: visualizza interfacce di rete
+
+        netstat, ss: connessioni attive
+
+        service: gestione servizi (start, stop, status)
+
+    Controllo processi:
+
+        ps, ps aux, top, htop
+
+9.  Linguaggi di Programmazione
+
+    Tipi:
+
+        Linguaggio macchina (0 e 1)
+
+        Assembler
+
+        Alto livello (Python, C, ecc.)
+
+    Tipi di errori:
+
+        Sintassi (errori ortografici nel codice)
+
+        Logici (errori di progettazione)
+
+        Runtime (durante l’esecuzione)
+
+_________________________________________________________________________________________
+
+1.  Linguaggi di programmazione degli hacker
+ Linguaggio C:
+
+    Imperativo, portabile, adatto per sistemi operativi
+
+    Manipola direttamente hardware e memoria
+
+    Usa librerie (stdio.h, stdlib.h, string.h ecc.)
+
+    Funzione principale: int main()
+
+    Caratteri speciali: \n, \t, \a, \b, \f
+
+    Tipi di dato: int, char, float, double, short, long
+
+    Input/output: scanf(), printf() con simboli %d, %f, ecc.
+
+ Operatori logici:
+
+    Comparazione: ==, !=, >, <, >=, <=
+
+    Logici: &&, ||, !
+
+2.  Gestione della Memoria in C
+ Puntatori:
+
+    Variabili che contengono indirizzi di memoria
+
+    Sintassi: int *ptr; – *ptr = valore;
+
+    Operazioni:
+
+        Cambiare valore puntato
+
+        Cambiare indirizzo memorizzato
+
+ Aree di memoria:
+
+    Stack:
+
+        Allocazione automatica per variabili locali
+
+        Meccanismo LIFO: PUSH (aggiungi), POP (rimuovi)
+
+        Usato per parametri e ritorno da funzioni (ESP, EBP, EIP)
+
+    Heap:
+
+        Allocazione dinamica (gestita dal programmatore)
+
+        Richiede funzioni di libreria (malloc(), free())
+
+3.  Compilazione in C (Kali Linux + GCC)
+
+    Scrittura file: nano nome_file.c
+
+    Compilazione: gcc nome_file.c -o eseguibile
+
+    Esecuzione: ./eseguibile
+
+4.  Python: strutture dati fondamentali
+ Liste:
+
+    Simili ad array ma eterogenee
+
+    Indicizzate da numeri interi (lista[0])
+
+    Metodi:
+
+        append(), insert(), del, modifica diretta
+
+ Dizionari:
+
+    Coppie chiave:valore (es: {"user": "admin"})
+
+    Metodi:
+
+        dict.keys(), dict.values(), dict["chiave"], aggiunte dinamiche
+
+5.  Scope e visibilità in Python
+
+    Variabili locali: definite dentro una funzione
+
+    Variabili globali: definite fuori da ogni funzione
+
+    Uso di global per modificare variabili globali all’interno di funzioni
+
+6.  Socket e Networking (Python)
+ Socket TCP:
+
+    Creazione: socket.socket(AF_INET, SOCK_STREAM)
+
+    Binding: socket.bind((IP, PORT))
+
+    Ascolto: socket.listen(backlog)
+
+    Connessione: socket.accept(), recv(1024)
+
+ Port Scanner:
+
+    Inserimento IP e intervallo porte (1-1024)
+
+    Ciclo for su ogni porta
+
+    Connessione tramite connect_ex
+
+        Se 0: porta aperta
+
+        Altrimenti: chiusa
+
+7.  Backdoor (Python)
+
+    Connessione remota persistente tramite socket
+
+    Server in ascolto → Client si connette e può eseguire comandi
+
+    Tecnica usata post-exploit
+
+8.  Burp Suite – Intercepting Proxy
+
+    Strumento di analisi e manipolazione richieste HTTP
+
+    Preinstallato su Kali Linux
+
+    Componenti:
+
+        Proxy (intercept): intercetta richieste browser
+
+        Repeater: invio manuale di richieste modificate
+
+        Intruder, Sequencer: altri moduli avanzati
+
+    Configurazione:
+
+        Browser con proxy su 127.0.0.1:8080
+
+        Uso di “Open browser” o configurazione manuale
+
+    Azioni:
+
+        Visualizza/modifica richieste
+
+        Invia (Forward) o blocca (Drop)
+
+________________________________________________________________________________________
+
+
+
+Penetration Testing e Vulnerability Assessment
+1.  Fase di Ingaggio
+
+Definisce i dettagli preliminari del test:
+
+    ✅ Costi dell’attività
+
+    🧱 Perimetro (asset coinvolti)
+
+    🕒 Finestra temporale di test (es: 18:00–22:00 per 2 mesi)
+
+    📜 Aspetti legali (gestione dati personali, autorizzazioni)
+
+    📕 Regole di ingaggio (cosa può o non può fare il pentester)
+
+    🧪 Tipo di test richiesto:
+
+        WAPT (Web App Pen Test)
+
+        PT infrastrutturale (rete, server, dispositivi)
+
+        Metodologia:
+
+            White box: tutte le info note
+
+            Gray box: info parziali
+
+            Black box: nessuna info → simula attaccante reale
+
+2.  Raccolta Informazioni (Information Gathering)
+
+Scopo: raccogliere dati utili a personalizzare gli attacchi
+ Info generali:
+
+    Investitori
+
+    Dipendenti
+
+    Sedi
+
+    Dirigenti
+
+    Indirizzi IP, domini, sistemi operativi
+
+ Web App:
+
+    Domini e sottodomini
+
+    Tecnologie usate (PHP, .NET, Java, ecc.)
+
+    Risorse e pagine accessibili
+
+ Classificazione:
+
+    Attiva: interrogazione diretta con strumenti (DNS, WHOIS, server e-mail…)
+
+    Passiva: info pubbliche da OSINT (motori di ricerca, database pubblici…)
+
+3.  Enumerazione e Scansione
+
+Passaggio intermedio tra raccolta info e fase di exploit.
+ Obiettivi:
+
+    Identificare host attivi
+
+    Scoprire servizi esposti
+
+    Rilevare porte aperte
+
+    Determinare sistemi operativi
+
+ Tecniche e strumenti:
+
+    Strumento tipico: Nmap
+
+    Tipi di scansione:
+
+        TCP Connect Scan (completo)
+
+        SYN Scan (stealth)
+
+        UDP Scan
+
+    Stati delle porte:
+
+        Aperta → risposta ricevuta (es. SYN+ACK)
+
+        Chiusa → risposta negativa
+
+        Filtrata → nessuna risposta (firewall?)
+
+ Vantaggi:
+
+    Efficienza: evitare di testare vulnerabilità non rilevanti
+
+    Precisione nelle fasi successive
+
+
+Vulnerability Assessment vs Penetration Test
+
+    VA = valutazione automatica → cerca vulnerabilità conosciute
+
+    PT = simulazione di attacco reale → verifica l’effettiva sfruttabilità
+
+ Il VA può essere:
+
+    Locale
+
+    Remoto
+
+2.  Strumenti: Vulnerability Scanner
+
+    Automatizzano la ricerca di vulnerabilità
+
+    Usano database aggiornati (CVE, exploit noti, configurazioni errate)
+
+    Esempio: Nessus (uno dei più usati)
+
+3.  Nessus: struttura
+
+    Client:
+
+        Configura scansioni (target IP, tipo test, intervalli)
+
+    Server:
+
+        Lancia scansioni
+
+        Analizza risposte e confronta con database
+
+    Entrambi possono essere installati sulla stessa macchina
+
+4.  Fasi di scansione con Nessus
+
+    Port Scanning
+    → Identifica host attivi e porte aperte
+
+    Service Detection (Banner Grabbing)
+    → Rileva i servizi in esecuzione
+
+    Query al Vulnerability Database
+    → Cerca vulnerabilità associate ai servizi trovati
+
+    Vulnerability Testing
+    → Verifica reale presenza delle vulnerabilità rilevate
+
+5.  Analisi dei risultati: Report Nessus
+📌 Tipologie:
+
+    Basic Network Scan
+
+    Report formati: HTML, PDF, CSV
+
+    Livelli di dettaglio: esempio → detailed vulnerability by host
+
+🎯 Dati chiave nel report:
+
+    Vista generale: vulnerabilità per priorità (colori):
+
+        🔴 Critical
+
+        🟠 High
+
+        🟡 Medium
+
+        🔵 Low
+
+        ⚪ Info
+
+    Info tecniche:
+
+        Nome vulnerabilità
+
+        Descrizione tecnica
+
+        Link utili
+
+    Risk & remediation:
+
+        Soluzione proposta
+
+        CVSS Score
+
+        Rischio stimato
+
+        Plugin utilizzato
+
+        Output di prova (comando eseguito)
+
+6.  Obiettivi del report Nessus
+
+    Prioritizzare interventi (tramite CVSS Score)
+
+    Supporto alla fase di exploit
+
+    Definizione remediation plan
+
+    Validazione sicurezza dei sistemi
+
+ Conclusione:
+L’analisi dei risultati di Nessus è cruciale per ogni pentester, perché consente di:
+
+    Individuare i punti deboli effettivi
+
+    Assegnare priorità
+
+    Proporre soluzioni concrete
+
+_____________________________________________________________________________________
+
+
+1.  Strumenti da laboratorio
+
+    Wireshark: analisi pacchetti (HTTP, FTP, DNS)
+
+    Burp Suite: intercettazione richieste web (DVWA, RootMe)
+
+    Aircrack-ng: attacchi WPA2 (handshake + cracking)
+
+    John the Ripper / Hashcat: cracking password (MD5, SHA1) via dizionari o GPU
+
+    Nmap / Metasploit: scansioni e sfruttamento vulnerabilità (Metasploitable2)
+
+    Autopsy / Sleuth Kit / Foremost / Scalpel: digital forensics su immagini disco
+
+2.  Analisi del traffico di rete
+ Wireshark:
+
+    Cattura pacchetti su rete HTTP
+
+    Filtraggio POST: http.request.method == "POST"
+
+    Obiettivo: identificare credenziali inviate in chiaro
+
+ Burp Suite:
+
+    Proxy HTTP/S
+
+    Manipolazione richieste POST su webapp vulnerabili
+
+    Obiettivo: osservare effetti di modifiche lato client
+
+3.  Cracking password
+ John the Ripper:
+
+    Cracking hash (es. MD5) con dizionario (rockyou.txt)
+
+    Comando esempio:
+
+    john --format=raw-md5 --wordlist=... hash.txt
+    john --show --format=raw-md5 hash.txt
+
+ Hashcat:
+
+    Cracking GPU-based (più veloce)
+
+    Tecniche: wordlist, combinazioni, mask attack
+
+4.  Scansione e sfruttamento
+ Nmap:
+
+    Scansione TCP/UDP, OS fingerprinting
+
+    Script NSE per analisi avanzata
+
+ Metasploit:
+
+    Exploit noti → es. vsftpd_234_backdoor
+
+    Comandi per avviare exploit e ottenere shell remota
+
+5.  Digital Forensics: teoria e pratica
+ Definizione:
+
+    Disciplina per raccogliere, conservare e analizzare prove digitali
+
+ Principi:
+
+    Integrità
+
+    Catena di custodia
+
+    Validità legale
+
+ Fasi dell’indagine:
+
+    Acquisizione (es. immagine .dd)
+
+    Preservazione (es. write blocker)
+
+    Analisi (file, timeline, RAM, log, ecc.)
+
+    Reporting (metodologia + risultati)
+
+6.  Strumenti di digital forensics
+ Autopsy: GUI per immagini disco
+
+    Analisi file cancellati, timeline, metadati
+
+ Sleuth Kit (CLI):
+
+    fls, icat, mmls: esplorazione dettagliata
+
+ Foremost / Scalpel:
+
+    File carving: recupero dati da pattern binari
+
+
+________________________________________________________________________________________
+
+
+1.  Reverse Engineering
+ Definizione:
+
+Analisi di un sistema (eseguibile o software) senza accedere al codice sorgente.
+ Obiettivi:
+
+    Capire il funzionamento interno
+
+    Identificare vulnerabilità
+
+    Recuperare dati
+
+ Applicazioni:
+
+    Sicurezza (analisi malware)
+
+    Interoperabilità (API non documentate)
+
+    Protocol analysis (studio protocolli proprietari)
+
+ Strumenti:
+
+    Ghidra (open-source, NSA)
+
+    IDA Pro (commerciale)
+
+    Radare2 (CLI)
+
+2.  Crittografia
+ Tipi principali:
+
+    Simmetrica (AES) → una sola chiave
+
+    Asimmetrica (RSA) → coppia chiavi pubblica/privata
+
+    Hashing (SHA-256) → impronta digitale
+
+ Vantaggi:
+
+    AES: veloce, sicura, usata in banking
+
+    RSA: più sicuro della simmetrica per comunicazioni e firme digitali
+
+    Hash: integrità e protezione password
+
+ Strumenti:
+
+    GPG: cifratura email/file
+
+    Certbot: certificati SSL per siti web
+
+    OpenSSL: libreria di cifratura versatità
+
+
+
+ Anonimato proteggere la privacy online è fondamentale per evitare tracciamenti:
+
+    Tor: rete a 3 nodi (entry, relay, exit)
+    Limitazioni Tor: lentezza, blocco di Tor(alcuni siti bloccano o limitano l'accesso tramite tor)
+    AnonSurf: automatizza Tor
+
+4.  Attacchi a credenziali
+ Brute Force vs Dizionario:
+
+    Brute force lento (tanti tentativi)
+
+    Dizionario più efficiente (con parole comuni)
+
+ Tool: Hydra
+
+    Attacchi su: SSH, FTP, HTTP, RDP, SMB
+
+
+5.  Share Windows e NULL Session
+ Condivisioni:
+
+    UNC path: \\Server\Share\file.txt
+
+    Share admin: C$, Admin$, IPC$
+
+ Vulnerabilità:
+
+    NULL session → accesso a info sensibili senza credenziali
+
+ Tool:
+
+    NET VIEW → elenca share
+
+    smbclient -L //IP -N → info su condivisioni
+
+    Enum4Linux -S -U -P → utenti, share, policy
+
+6.  Metasploit Framework
+ Caratteristiche:
+
+    Exploits + payloads
+
+    Interfaccia: MSFConsole
+
+ Comandi:
+
+    search <exploit>
+
+    use <exploit>
+
+    set RHOSTS <IP>
+
+    exploit
+
+ Esempi:
+
+    Exploit SMB: ms17_010_eternalblue
+
+    Meterpreter comandi:
+
+        sysinfo → info sistema
+
+        hashdump → estrai hash password
+
+        webcam_snap → scatta da webcam
+
+        route → routing sistema target
+
+7.  Scansione e Ricognizione
+ Nmap:
+
+    nmap -O <target> → OS detection
+
+    nmap -sV <target> → versioni servizi
+
+ Attacchi:
+
+    Java RMI exploit: esecuzione codice remoto
+
+    use exploit/multi/remote/java_rmi
+
+8.  Best Practices
+
+     Aggiorna sistemi
+
+     Configura correttamente le share
+
+     Proteggi le credenziali
+
+     Verifica accessi non autorizzati (audit)
+
+_________________________________________________________________________________________
+
+
+    Endpoint Detection & Response (EDR) e Extended Detection & Response (XDR)
+        EDR:
+            Monitoraggio endpoint per attività dannose (malware, APT, ransomware).
+            Rilevamento di minacce e anomalie a livello di endpoint.
+        XDR:
+            Estensione di EDR con dati da reti, applicazioni e cloud.
+            Visione centralizzata della sicurezza.
+
+        Funzionamento:
+            EDR: Rilevamento a livello endpoint.
+            XDR: Integrazione dati multi-livello.
+        Vantaggi: Risposta automatica, visibilità totale
+.
+        Applicazioni: Protezione avanzata endpoint, risposta alle minacce, visibilità completa.
+
+    Security Information and Event Management (SIEM)
+        Soluzione per raccogliere, normalizzare e analizzare dati di sicurezza da diverse fonti.
+        Identificazione e risposta a minacce in tempo reale.
+        
+	Funzionamento:
+            Raccolta dati (log da firewall, endpoint, server, ecc.).
+            Analisi e correlazione per identificare minacce.
+            Alert in tempo reale e possibilità di risposta (automatica o manuale).
+        Vantaggi: Visibilità centralizzata, rilevamento precoce, conformità normativa.
+
+    Introduzione ai SOAR (Security Orchestration, Automation, and Response)
+        Piattaforma per automatizzare e ottimizzare le operazioni di sicurezza.
+        Orchestrazione di strumenti di sicurezza per la gestione degli incidenti.
+        Funzionamento:
+            Orchestrazione: Integrazione di diversi strumenti.
+            Automazione: Risposta automatica agli incidenti.
+            Risposta automatica: Esecuzione automatica di azioni.
+        Vantaggi: Efficienza operativa, risposta rapida, minimizzazione errori.
+
+    Pianificazione della risposta agli incidenti e gestione delle minacce
+        Pianificazione della Risposta agli Incidenti:
+            Preparazione (piano, ruoli, procedure).
+            Identificazione tempestiva.
+            Contenimento e recupero rapido.
+            Lezioni apprese e aggiornamento procedure.
+        Gestione delle Minacce:
+            Identificazione (monitoraggio continuo).
+            Analisi (gravità e impatto).
+            Mitigazione (applicazione soluzioni).
+            Monitoraggio continuo (verifica neutralizzazione).
+
+    Principali normative di cybersecurity
+        GDPR: Protezione dati personali (UE).
+        ISO 27001: Standard gestione sicurezza informazioni.
+        NIST: Linee guida sicurezza informatica (USA).
+        PCI-DSS: Standard sicurezza dati carte di pagamento.
+
+    Best practice per la sicurezza cloud e on-premises
+        Autenticazione a più fattori (MFA).
+        Crittografia dei dati (transito e memorizzazione).
+        Backup regolari.
+        Controllo degli accessi (principio del privilegio minimo).
+
+Conclusioni:
+
+    EDR/XDR migliorano la sicurezza di endpoint e reti.
+    SIEM centralizza la gestione degli eventi di sicurezza.
+    SOAR automatizza la risposta agli incidenti.
+    Le normative sono cruciali per la protezione dei dati e la conformità.
+
