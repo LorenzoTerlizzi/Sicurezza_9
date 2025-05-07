@@ -1,0 +1,13 @@
+white hat: hacker che agiscono legalmente per migliorare la sicurezza
+black hat: hacker che agiscono illegalmenteper fini criminali, trafugano dati e li vendono
+gray hat: hacker che individua le falle nei sistemi ma non sfrutta illegamnetente gli exploit, in genere richiede un riscatto
+Penetration testing: è un' insieme di processi e procedure pratiche che analizzano e valutano la sicurezza di un sistema informatico.
+Fasi penetration testing:
+	-raccolta informazioni
+	-enumerazione e scansione del sistema
+	- valutazione e sfruttamento vulnerabiltà
+	- mantenimento accessi
+	- report
+Vulnerability scanner: sono diversi tool che possono supportare nell'analisi(es. nmap)
+Modello IOS/OSI: è basato su una pila di 7 livelli(layer), dove ogni layer serve il suo superioreed ha dei protocolli esclusivi.
+Le differenze tra TCI/IP e ISO/OSI: 
